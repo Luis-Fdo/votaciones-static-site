@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal de Registro - Votaciones Estudiantiles</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Bienvenido al portal de registro para votaciones estudiantiles</h1>
+      <p class="subtitle">Inicia sesión o regístrate para continuar.</p>
+    </header>
+
+    <!-- LOGIN VIEW -->
+    <section id="view-login" class="view">
+      <form id="form-login" class="card">
+        <h2>Iniciar sesión</h2>
+        <div class="field">
+          <label for="login-email">Usuario (correo electrónico)</label>
+          <input id="login-email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required />
+        </div>
+        <div class="field">
+          <label for="login-password">Contraseña</label>
+          <input id="login-password" name="password" type="password" placeholder="••••••••" required />
+        </div>
+        <div class="actions">
+          <button type="submit">Ingresar</button>
+        </div>
+        <p class="muted">
+          ¿No tienes cuenta?
+          <a href="#" id="link-to-register">Regístrate aquí</a>
+        </p>
+        <p id="login-error" class="error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- REGISTER VIEW -->
+    <section id="view-register" class="view hidden">
+      <form id="form-register" class="card">
+        <h2>Registro de nuevo usuario</h2>
+
+        <div class="grid">
+          <div class="field">
+            <label for="reg-nombre">Nombre(s)</label>
+            <input id="reg-nombre" name="nombre" type="text" placeholder="Nombre(s)" required />
+          </div>
+          <div class="field">
+            <label for="reg-apellido">Apellido(s)</label>
+            <input id="reg-apellido" name="apellido" type="text" placeholder="Apellido(s)" required />
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="reg-cedula">Cédula de ciudadanía</label>
+            <input id="reg-cedula" name="cedula" inputmode="numeric" pattern="\d{5,12}" placeholder="Solo números" required />
+            <small class="muted">Entre 5 y 12 dígitos.</small>
+          </div>
+          <div class="field">
+            <label for="reg-codigo">Código estudiantil</label>
+            <input id="reg-codigo" name="codigo" inputmode="numeric" pattern="\d{4,15}" placeholder="Solo números" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reg-email">Correo electrónico</label>
+          <input id="reg-email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required />
+        </div>
+
+        <div class="field">
+          <label for="reg-password">Contraseña</label>
+          <input id="reg-password" name="password" type="password" placeholder="Mínimo 8 caracteres" required aria-describedby="pwd-rules" />
+          <ul id="pwd-rules" class="pwd-rules" aria-live="polite">
+            <li data-rule="length">Mínimo 8 caracteres</li>
+            <li data-rule="uppercase">Al menos una letra mayúscula</li>
+            <li data-rule="number">Al menos un número</li>
+            <li data-rule="special">Al menos un carácter especial (!@#$%^&*...)</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Crear cuenta</button>
+          <button type="button" class="secondary" id="btn-cancel-register">Cancelar</button>
+        </div>
+
+        <p id="register-error" class="error" role="alert" aria-live="polite"></p>
+        <p id="register-success" class="success" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- PROFILE (READ/UPDATE/DELETE) -->
+    <section id="view-profile" class="view hidden">
+      <div class="card">
+        <div class="profile-header">
+          <h2>Perfil</h2>
+          <div class="profile-actions">
+            <button id="btn-edit">Editar</button>
+            <button id="btn-save" class="primary hidden">Guardar cambios</button>
+            <button id="btn-cancel-edit" class="secondary hidden">Cancelar</button>
+            <button id="btn-delete" class="danger">Eliminar cuenta</button>
+            <button id="btn-logout" class="secondary">Cerrar sesión</button>
+          </div>
+        </div>
+
+        <form id="form-profile" class="profile-form" novalidate>
+          <div class="grid">
+            <div class="field">
+              <label for="prof-nombre">Nombre(s)</label>
+              <input id="prof-nombre" type="text" disabled />
+            </div>
+            <div class="field">
+              <label for="prof-apellido">Apellido(s)</label>
+              <input id="prof-apellido" type="text" disabled />
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="prof-cedula">Cédula de ciudadanía</label>
+              <input id="prof-cedula" type="text" disabled />
+            </div>
+            <div class="field">
+              <label for="prof-codigo">Código estudiantil</label>
+              <input id="prof-codigo" type="text" disabled />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="prof-email">Correo electrónico (usuario)</label>
+            <input id="prof-email" type="email" disabled />
+            <small class="muted">Puedes cambiarlo al editar.</small>
+          </div>
+
+          <div class="field">
+            <label for="prof-password">Contraseña</label>
+            <input id="prof-password" type="password" placeholder="Nueva contraseña (opcional)" disabled aria-describedby="pwd-rules-profile" />
+            <ul id="pwd-rules-profile" class="pwd-rules small" aria-live="polite">
+              <li data-rule="length">Mínimo 8 caracteres</li>
+              <li data-rule="uppercase">Al menos una letra mayúscula</li>
+              <li data-rule="number">Al menos un número</li>
+              <li data-rule="special">Al menos un carácter especial (!@#$%^&*...)</li>
+            </ul>
+            <small class="muted">Déjalo vacío si no deseas cambiarla.</small>
+          </div>
+        </form>
+
+        <p id="profile-msg" class="success" role="status" aria-live="polite"></p>
+        <p id="profile-error" class="error" role="alert" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <small>Proyecto de demostración CRUD con LocalStorage. No usar para credenciales reales.</small>
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
